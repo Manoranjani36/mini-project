@@ -248,15 +248,36 @@
             border-radius: 5px;
         }
 
-        .quiz-options {
-            margin-top: 10px;
-            margin-left: 20px;
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            cursor: pointer;
         }
 
-        .quiz-options label {
-            display: block;
-            margin: 10px 0;
-            font-weight: normal;
+        /* Radio button */
+        .quiz-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* Option text */
+        .quiz-option span {
+            cursor: pointer;
+        }
+
+        /* Hover effect */
+        .quiz-option:hover span {
+            color: #667eea;
+        }
+
+        /* Selected */
+        .quiz-option input[type="radio"]:checked+span {
+            font-weight: bold;
+            color: #667eea;
         }
 
         .alert-success {
@@ -932,12 +953,12 @@
                         <div class="quiz-question">
                             <p><strong>${index + 1}. ${q.question}</strong></p>
                             <div class="quiz-options">
-                                ${q.options.map((opt, optIndex) => `
-                                    <label>
-                                        <input type="radio" name="q${index}" value="${opt}">
-                                        ${opt}
-                                    </label><br>
-                                `).join('')}
+                                ${q.options.map((opt, i) => `
+    <label class="quiz-option">
+        <input type="radio" name="q${index}" value="${opt}">
+        <span>${String.fromCharCode(65 + i)}. ${opt}</span>
+    </label>
+`).join('')}
                             </div>
                         </div>
                     `).join('');
@@ -1300,7 +1321,6 @@
         function closeQuiz() {
             document.getElementById("quizModal").style.display = "none";
         }
-
         // 🔽 ADD THIS FUNCTION HERE (before window.onload)
 
         async function uploadQuizPDF() {
@@ -1339,7 +1359,6 @@
                 alert("Error uploading PDF");
             }
         }
-
         // Initialize
         window.onload = () => {
             loadPreferences();
