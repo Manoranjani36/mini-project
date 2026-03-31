@@ -422,6 +422,7 @@
             </button>
 
             <hr>
+
             <!-- Subject Filter Info -->
             <div id="teacherSubjectInfo" class="teacher-subject-info">
                 <strong>📊 Subject Filter:</strong> You are viewing progress only for <strong
@@ -1300,7 +1301,6 @@
         function closeQuiz() {
             document.getElementById("quizModal").style.display = "none";
         }
-
         // 🔽 ADD THIS FUNCTION HERE (before window.onload)
 
         async function uploadQuizPDF() {
@@ -1339,7 +1339,6 @@
                 alert("Error uploading PDF");
             }
         }
-
         // Initialize
         window.onload = () => {
             loadPreferences();
